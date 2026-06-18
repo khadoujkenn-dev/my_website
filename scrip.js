@@ -1,52 +1,38 @@
-const searchBtn = document.getElementById('search-btn');
-const searchInput = document.getElementById('search-input');
-const wallpapersGrid = document.getElementById('wallpapers-grid');
+const accessKey = "ILBcF7L2JhGQRNAfzM2xACDEF4EcYj5KyMklp6bgx_Q"; 
 
-// سنستخدم مفتاح وصول مجاني عام لجلب الصور
-const apiKey = 'L8p7E6fR8_w_WwHuxXg9pYwVfXW8GZ2pY67Wk9_XYZ4'; 
+const searchInput = document.getElementById('search-input');
+const searchBtn = document.getElementById('search-btn');
+const imageContainer = document.getElementById('wallpapers-grid');
 
 searchBtn.addEventListener('click', () => {
-    const query = searchInput.value.trim();
-    if (query !== '') {
-        searchWallpapers(query);
-    } else {
-        alert('الرجاء كتابة كلمة للبحث!');
+    const query = searchInput.value;
+    
+    if (!query) {
+        alert("من فضلك، اكتبي كلمة للبحث أولاً!");
+        return;
     }
-});
 
-// تفعيل البحث عند الضغط على زر Enter في لوحة المفاتيح
-searchInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        searchBtn.click();
-    }
-});
+    imageContainer.innerHTML = '<p>جاري البحث...</p>';
 
-function searchWallpapers(query) {
-    // تنظيف النتائج السابقة
-    wallpapersGrid.innerHTML = '<p>جاري البحث عن خلفيات...</p>';
-
-    // طلب الصور وحصر النتائج بصور طولية (portrait) تناسب الهواتف
-    const url = `https://api.unsplash.com/search/photos?page=1&query=${query}&orientation=portrait&client_id=${apiKey}`;
-
-    fetch(url)
+    fetch(`https://api.unsplash.com/search/photos?query=${query}&client_id=${accessKey}`)
         .then(response => response.json())
         .then(data => {
-            wallpapersGrid.innerHTML = ''; // مسح جملة جاري البحث
+            imageContainer.innerHTML = ''; // مسح كلمة "جاري البحث"
             
             if (data.results.length === 0) {
-                wallpapersGrid.innerHTML = '<p>لم نجد أي خلفيات، جرب كلمة أخرى بالإنجليزية.</p>';
+                imageContainer.innerHTML = '<p>عذراً، لم نجد صوراً لهذه الكلمة.</p>';
                 return;
             }
 
-            // عرض الصور داخل الموقع
             data.results.forEach(photo => {
-                const imgElement = document.createElement('img');
-                imgElement.src = photo.urls.small;
-                imgElement.alt = photo.alt_description;
-                wallpapersGrid.appendChild(imgElement);
+                const img = document.createElement('img');
+                img.src = photo.urls.small;
+                img.alt = "خلفية هاتف";
+                imageContainer.appendChild(img);
             });
         })
         .catch(error => {
-            console.error('خطأ في جلب البيانات:', error);
-            wallpapersGrid.innerHTML = '<p>حدث خطأ أثناء جلب الخلفيات. حاول مجدداً.</p>';
-        });}
+            console.error('حدث خطأ:', error);
+            imageContainer.innerHTML = '<p>حدث خطأ أثناء الاتصال، حاولي مرة أخرى.</p>';
+        });
+});
