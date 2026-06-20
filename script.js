@@ -1,7 +1,7 @@
 
-            const searchInput = document.getElementById('search-input'); // تأكدي أن هذا هو اسم الـ ID في ملف HTML
+            const searchInput = document.getElementById('search-button'); // تأكدي أن هذا هو اسم الـ ID في ملف HTML
 const searchButton = document.getElementById('search-button'); // زر البحث
-const resultsContainer = document.getElementById('wallpapers-grid'); // المكان الذي ستظهر فيه الصور
+const resultsContainer = document.getElementById('results'); // المكان الذي ستظهر فيه الصور
 
 searchButton.addEventListener('click', () => {
     const query = searchInput.value + " aesthetic wallpaper 4k"; // إضافة كلمات لضمان الجودة
