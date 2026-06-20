@@ -10,7 +10,7 @@ searchButton.addEventListener('click', () => {
     const query = searchInput.value;
     if (!query) return;
 
-    const url = `https://api.unsplash.com/search/photos?query=${query}&per_page=30&client_id=${apiKey}`;
+const url = `https://api.unsplash.com/search/photos?query=${query}&per_page=30&client_id=${apiKey}`;
 
     fetch(url)
         .then(response => response.json())
