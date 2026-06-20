@@ -1,36 +1,15 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-}
+body { text-align: center; font-family: Arial, sans-serif; }
 
-/* 2. تنسيق حاوية الصور (هذا هو الكود الذي سألتِ عنه) */
-#wallpapers-grid {
+#results {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* تجعل الصور في عمودين متساويين */
-    gap: 15px; /* مسافة بين الصور */
-    padding: 15px;
-}
-
-/* 3. تنسيق كل صورة على حدة */
-#wallpapers-grid img {
-    width: 100%;
-    height: 250px; /* طول ثابت للصور لتبدو متناسقة */
-    object-fit: cover; /* لقص الصورة بطريقة لا تشوهها */
-    border-radius: 15px; /* حواف دائرية لشكل التطبيقات */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* ظل خفيف خلف الصورة */
-}
-
-/* 4. تنسيق إضافي لمربع البحث (ليكون منظراً جميلاً) */
-.search-box {
-    margin: 20px 0;
-}
-
-input {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
     padding: 10px;
-    width: 70%;
-    border-radius: 20px;
-    border: 1px solid #ccc;
+}
+
+#results img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
 }
