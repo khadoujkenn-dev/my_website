@@ -4,7 +4,7 @@ const searchButton = document.getElementById('search-button');
 const resultsContainer = document.getElementById('results');
 
 // ضعي مفتاحك هنا بين علامتي التنصيص
-const apiKey = 'زنمILBcF7L2JhGQRNAfzM2xACDEF4EcYj5KyMklp6bgx_Q'
+const apiKey ='tG74eKqukRXbuL-G787DervzzW6vGz6N9cfZg_ZFfNw'
 
 searchButton.addEventListener('click', () => {
     const query = searchInput.value;
